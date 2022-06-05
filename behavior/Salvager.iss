@@ -429,7 +429,7 @@ objectdef obj_Salvager inherits obj_StateQueue
 			}
 
 			variable iterator TargetIterator
-			Salvage.Wrecks.TargetList:GetIterator[TargetIterator]
+			Salvage.WrecksToLock.TargetList:GetIterator[TargetIterator]
 			if ${TargetIterator:First(exists)}
 			{
 				do

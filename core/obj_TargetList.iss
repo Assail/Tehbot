@@ -27,8 +27,8 @@ objectdef obj_TargetList inherits obj_StateQueue
 	variable bool ListOutOfRange = TRUE
 	variable bool AutoLock = FALSE
 	variable bool LockOutOfRange = TRUE
-	variable int MinLockCount = 2
-	variable int MaxLockCount = 2
+	variable int MinLockCount = 3
+	variable int MaxLockCount = 3
 	variable bool NeedUpdate = TRUE
 	variable bool Updated = FALSE
 	variable bool ForceLockExclusion = FALSE

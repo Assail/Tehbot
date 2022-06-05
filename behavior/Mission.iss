@@ -978,6 +978,7 @@ objectdef obj_Mission inherits obj_StateQueue
 					; TODO Test without this condition
 					elseif !${NPCs.TargetList.Used}
 					{
+						This:LogDebug["Checking loot"]
 						if !${EVEWindow[Inventory].ChildWindow[${currentLootContainer}](exists)}
 						{
 							Entity[${currentLootContainer}]:Open
@@ -993,6 +994,7 @@ objectdef obj_Mission inherits obj_StateQueue
 							if ${itemIterator:First(exists)}
 								do
 								{
+									This:LogDebug["I see ${itemIterator.Value.Type}"]
 									if ${itemIterator.Value.Type.Equal[${aquireItem}]}
 									{
 										itemIterator.Value:MoveTo[${MyShip.ID}, CargoHold]
@@ -2367,6 +2369,7 @@ objectdef obj_Mission inherits obj_StateQueue
 		}
 
 		defaultAmmoAmountToLoad:Dec[${This.InventoryItemQuantity[${ammo}, ${Me.ShipID}, "ShipCargo"]}]
+		This:LogDebug["defaultAmmoAmountToLoad ${defaultAmmoAmountToLoad} ammo ${ammo}"]
 		secondaryAmmoAmountToLoad:Dec[${This.InventoryItemQuantity[${secondaryAmmo}, ${Me.ShipID}, "ShipCargo"]}]
 		batteryToLoad:Dec[${This.InventoryItemQuantity[${batteryType}, ${Me.ShipID}, "ShipCargo"]}]
 
@@ -2591,13 +2594,13 @@ objectdef obj_Mission inherits obj_StateQueue
 
 		if ${defaultAmmoAmountToLoad} > 0
 		{
-			This:LogCritical["You're out of ${ammo}, halting."]
+			This:LogCritical["You're out of ammo: ${ammo}, halting."]
 			This:Stop
 			return TRUE
 		}
 		elseif ${Config.UseSecondaryAmmo} && ${secondaryAmmoAmountToLoad} > 0
 		{
-			This:LogCritical["You're out of ${secondaryAmmo}, halting."]
+			This:LogCritical["You're out of SecondAmmo: ${secondaryAmmo}, halting."]
 			This:Stop
 			return TRUE
 		}
@@ -2609,7 +2612,7 @@ objectdef obj_Mission inherits obj_StateQueue
 		}
 		elseif ${batteryToLoad} > 0
 		{
-			This:LogCritical["You're out of ${batteryType}, halting."]
+			This:LogCritical["You're out of Battery: ${batteryType}, halting."]
 			This:Stop
 			return TRUE
 		}
